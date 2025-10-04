@@ -230,6 +230,25 @@ body {
     opacity: 0.8;
 }
 
+.footer a {
+    color: #fff; /* or any other color you want, like #cccccc */
+    text-decoration: none;
+  }
+
+html, body {
+    height: 100%; /* Makes footer color block sit at bottom of the screen */
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex-grow: 1; /* Makes footer color block sit at bottom of the screen */
+  }
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-container {
