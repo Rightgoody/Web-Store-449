@@ -85,7 +85,7 @@ body {
 }
 
 .cta-button {
-    background-color: #e74c3c;
+    background-color: #61231c;
     color: white;
     padding: 15px 30px;
     border: none;
@@ -99,9 +99,9 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #c0392b;
+    background-color: #80382e;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+    box-shadow: 0 5px 15px rgba(177, 63, 50, 0.4);
 }
 
 .add-to-cart {
