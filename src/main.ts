@@ -1,5 +1,6 @@
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
+import { StorePage } from './pages/StorePage';
 
 class App {
     private currentPage: string = 'home';
@@ -40,6 +41,9 @@ class App {
                 break;
             case 'about':
                 this.appElement.innerHTML = new AboutPage().render();
+                break;
+            case 'store':
+                this.appElement.innerHTML = new StorePage().render();
                 break;
             default:
                 this.appElement.innerHTML = '<h1>Page not found</h1>';

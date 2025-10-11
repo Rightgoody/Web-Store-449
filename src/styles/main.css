@@ -60,13 +60,13 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    background-color: #3498db;
+    background-color: #db3934;
     color: white;
 }
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ea6666 0%, #764ba2 100%);
     color: white;
     padding: 100px 0;
     text-align: center;
@@ -102,6 +102,26 @@ body {
     background-color: #c0392b;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.add-to-cart {
+    background-color: rgb(192, 20, 20);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.add-to-cart:hover {
+    background-color: rgb(216, 78, 78);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgb(124, 2, 2)
 }
 
 /* Features Section */
@@ -216,6 +236,59 @@ body {
 .value-item p {
     color: #666;
     font-size: 0.95rem;
+}
+
+/* Products */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+}
+
+.product-item .image-container {
+    width: 250px;
+    height: 300px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.product-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-item h3 {
+    font-size: 1.25rem;
+    margin: 10px 0;
+}
+
+.product-item .product-price {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 /* Footer */
