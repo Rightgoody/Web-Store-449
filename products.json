@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "name": "Gildan T-Shirt",
+        "price": 4.99,
+        "stock": 50,
+        "description": "This shirt is made of 100% pre-shrunk cotton with a tear-away label that will become a staple in your closet.", 
+        "image": "https://ik.imagekit.io/c2o/prd/ik-seo/tr:n-original/4/c/8/8/4c883b480180432520fb059a6b99cd8c5dec30b8_Gildan_Heavy_Cotton_Adult_TShirt_213_638/Gildan_Heavy_Cotton_Adult_TShirt_213_638.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Gap Modern Khakis",
+        "price": 29.99,
+        "stock": 30,
+        "description": "These pants feature a classic five-pocket style along with a smooth twill.",
+        "image": "https://www.gap.com/webcontent/0055/633/889/cn55633889.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Hanes EcoSmart Sweatshirt",
+        "price": 19.99,
+        "stock": 50,
+        "description": "This cozy crewneck is made from a blended fleece fabric that is ultra soft."
+    }
+]
