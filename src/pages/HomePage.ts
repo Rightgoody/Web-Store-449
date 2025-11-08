@@ -5,7 +5,7 @@ export class HomePage {
                 <div class="hero-content">
                     <h1>Welcome to Our Store</h1>
                     <p>Discover amazing clothes at great prices. Your one-stop destination for quality shopping to fit all your needs.</p>
-                    <button class="cta-button">Shop Now</button>
+                    <a href="#shop" class="cta-button nav-link" data-page="store">Shop Now</a>
                 </div>
             </div>
             

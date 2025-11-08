@@ -19,6 +19,26 @@ class App {
         this.loadPage('home');
     }
 
+    private attachStoreFilters(): void {
+        const filterButtons = document.querySelectorAll('.filter-bar button');
+        const products = document.querySelectorAll('.product-item');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                products.forEach(product => {
+                    const tags = product.getAttribute('data-tags')?.split(',') || [];
+                    if (filter === 'all' || tags.includes(filter!)) {
+                        (product as HTMLElement).style.display = 'block';
+                    } else {
+                        (product as HTMLElement).style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+
     private setupNavigation(): void {
         const navLinks = document.querySelectorAll('.nav-link');
         console.log('Setting up navigation for', navLinks.length, 'links');
@@ -144,6 +164,7 @@ class App {
             case 'store':
                 console.log('Loading store page');
                 this.appElement.innerHTML = new StorePage().render();
+                this.attachStoreFilters();
                 break;
             case 'sign-in':
                 console.log('Loading login page');

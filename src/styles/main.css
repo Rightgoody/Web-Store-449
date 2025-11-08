@@ -291,7 +291,26 @@ body {
     font-weight: bold;
 }
 
-/* Footer */
+/* AI Assistance Message */
+.ai-assistant-promo {
+    position: fixed;        /* stays in place when scrolling */
+    bottom: 120px;           /* distance from bottom */
+    right: 20px;            /* distance from right */
+    width: 400px;           /* set the width */
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    z-index: 1000;          /* sits above other elements like footer block */
+}
+
+.ai-assistant-promo .cta-button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+/* Footer Block */
 .footer {
     background: #2c3e50;
     color: white;
@@ -462,6 +481,26 @@ body {
     border-radius: 5px;
     background: rgba(102, 126, 234, 0.1);
 }
+
+/* Page Footer */
+.footer a {
+    color: #fff; /* or any other color you want, like #cccccc */
+    text-decoration: none;
+  }
+
+html, body {
+    height: 100%; /* Makes footer color block sit at bottom of the screen */
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex-grow: 1; /* Makes footer color block sit at bottom of the screen */
+  }
 
 /* Responsive Design */
 @media (max-width: 768px) {
