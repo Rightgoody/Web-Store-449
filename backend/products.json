@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "name": "Gildan T-Shirt",
+        "price": 4.99,
+        "stock": 50,
+        "category": "Tops",
+        "description": "This shirt is made of 100% pre-shrunk cotton with a tear-away label that will become a staple in your closet.", 
+        "image": "https://ik.imagekit.io/c2o/prd/ik-seo/tr:n-original/4/c/8/8/4c883b480180432520fb059a6b99cd8c5dec30b8_Gildan_Heavy_Cotton_Adult_TShirt_213_638/Gildan_Heavy_Cotton_Adult_TShirt_213_638.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Gap Modern Khakis",
+        "price": 29.99,
+        "stock": 30,
+        "category": "Bottoms",
+        "description": "These pants feature a classic five-pocket style along with a smooth twill.",
+        "image": "https://www.gap.com/webcontent/0055/633/889/cn55633889.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Hanes EcoSmart Sweatshirt",
+        "price": 19.99,
+        "stock": 50,
+        "category": "Tops",
+        "description": "This cozy crewneck is made from a blended fleece fabric that is ultra soft.",
+        "image": "https://www.bigtopshirtshop.com/cdn/shop/files/P160_ash_flat_front_1000x1500.jpg?v=1734115633"
+    },
+    {
+        "id": 4,
+        "name": "Long Sleeve Mesh Polo",
+        "price": 99.99,
+        "stock": 30,
+        "category": "Tops",
+        "description": "This ribbed Polo color shirt is embroidered with the signature embroidered pony on the left chest.",
+        "image": "https://slimages.macysassets.com/is/image/MCY/products/5/optimized/33036505_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp"
+    },
+    {
+        "id": 5,
+        "name": "Herringbone Dress Shirt",
+        "price": 69.99,
+        "stock": 75,
+        "category": "Tops",
+        "description": "This slim-fit dress shirt features a non-iron fabric that will fit seamlessly into your professional wardrobe.",
+        "image": "https://slimages.macysassets.com/is/image/MCY/products/4/optimized/3346694_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp"
+    },
+    {
+        "id": 6,
+        "name": "501 Original Jeans",
+        "price": 79.99,
+        "stock": 80,
+        "category": "Bottoms",
+        "description": "A straight fit jean that sits at your waist crafted from a special non-stretch denim.",
+        "image": "https://content.stylitics.com/images/items/16349470"
+    },
+    {
+        "id": 7,
+        "name": "Military Bomber Jacket",
+        "price": 99.99,
+        "stock": 25,
+        "category": "Outerwear",
+        "description": "This all black bomber jacket is a versatile must-have for your wardrobe.",
+        "image": "https://content.stylitics.com/images/items/25031787"
+    },
+    {
+        "id": 8,
+        "name": "Navtech Solid Quarter Zip Sweater",
+        "price": 79.99,
+        "stock": 45,
+        "category": "Tops",
+        "description": "This quarter zip is made from an active-stretch fabric which will help you keep cool while looking good.",
+        "image": "https://content.stylitics.com/images/items/4398114"
+    },
+    {
+        "id": 9,
+        "name": "Classic Fit Iron Free Khaki Pants",
+        "price": 69.99,
+        "stock": 50,
+        "category": "Pants",
+        "description": "These dress pants are made from a wrinkle resistant fabric. Perfect for travel or around the office.",
+        "image": "https://content.stylitics.com/images/items/16026253"
+    },
+    {
+        "id": 10,
+        "name": "Soft Cotton Polo Shirt",
+        "price": 99.99,
+        "stock": 75,
+        "category": "Tops",
+        "description": "This short sleeve polo is made from a breathable cotton mesh for comfort and features a tennis tail to keep the shirt looking great on the move.",
+        "image": "https://content.stylitics.com/images/items/17579255"
+    }
+]
