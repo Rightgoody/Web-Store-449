@@ -4,7 +4,7 @@ export class AboutPage {
             <div class="about-hero">
                 <div class="container">
                     <h1>About Us</h1>
-                    <p class="about-subtitle">Learn more about our story and mission</p>
+                    <p class="about-subtitle">Learn more about who we are and what we stand for</p>
                 </div>
             </div>
             
@@ -13,19 +13,21 @@ export class AboutPage {
                     <div class="about-section">
                         <h2>Our Story</h2>
                         <p>
-                            Founded with a vision to provide exceptional shopping experiences, 
-                            our store has been serving customers with dedication and care. 
-                            We believe in offering quality products at competitive prices 
-                            while maintaining the highest standards of customer service.
+                            Founded with a passion for style and everyday wear, 
+                            our store was created to bring versatile fashion to everyone. 
+                            From timeless formalwear to relaxed casuals and active sportswear, 
+                            we design collections that fit seamlessly into modern life. 
+                            Every piece reflects our belief that clothing should be both practical and inspiring. 
                         </p>
                     </div>
                     
                     <div class="about-section">
                         <h2>Our Mission</h2>
                         <p>
-                            To make shopping convenient, enjoyable, and accessible for everyone. 
-                            We strive to curate the best products and provide outstanding 
-                            customer service that exceeds expectations.
+                            To make fashion simple, accessible, and dependable. 
+                            We aim to provide clothing that looks great, feels comfortable, 
+                            and empowers people to express themselves—whether at work, at play, 
+                            or anywhere in between. Our mission is to help you dress for every moment. 
                         </p>
                     </div>
 
@@ -46,19 +48,19 @@ export class AboutPage {
                         <div class="values-grid">
                             <div class="value-item">
                                 <h3>Quality</h3>
-                                <p>We carefully select every product to ensure the highest quality standards.</p>
+                                <p>We craft and curate clothing designed to last, using materials chosen with care.</p>
                             </div>
                             <div class="value-item">
                                 <h3>Customer First</h3>
-                                <p>Our customers are at the heart of everything we do.</p>
+                                <p>Your lifestyle inspires our collections—everything begins with you.</p>
                             </div>
                             <div class="value-item">
                                 <h3>Innovation</h3>
-                                <p>We continuously improve our services and shopping experience.</p>
+                                <p>We keep style fresh by blending modern design with everyday functionality.</p>
                             </div>
                             <div class="value-item">
                                 <h3>Trust</h3>
-                                <p>Building lasting relationships through transparency and reliability.</p>
+                                <p>We stand by our products and our promise to make fashion honest and reliable.</p>
                             </div>
                         </div>
                     </div>
