@@ -8,7 +8,13 @@ export class CartController {
       const userId = req.user!.id;
       const cartItems = await CartModel.findByUserId(userId);
       
-      const total = cartItems.reduce((sum, item) => sum + item.total_price, 0);
+      // Ensure total_price is converted to number before summing
+      const total = cartItems.reduce((sum, item) => {
+        const price = typeof item.total_price === 'string' 
+          ? parseFloat(item.total_price) 
+          : Number(item.total_price);
+        return sum + (isNaN(price) ? 0 : price);
+      }, 0);
       
       res.json({
         items: cartItems,

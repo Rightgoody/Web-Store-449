@@ -482,6 +482,52 @@ body {
     background: rgba(102, 126, 234, 0.1);
 }
 
+/* Cart Icon Button Styles */
+.cart-icon-container {
+    position: relative;
+    margin-right: 1rem;
+}
+
+.cart-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cart-icon-link:hover {
+    background-color: #f0f0f0;
+    color: #db3934;
+}
+
+.cart-icon-link svg {
+    width: 24px;
+    height: 24px;
+}
+
+.cart-count-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #db3934;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
 /* Page Footer */
 .footer a {
     color: #fff; /* or any other color you want, like #cccccc */

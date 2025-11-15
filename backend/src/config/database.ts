@@ -12,6 +12,7 @@ const poolConfig = {
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    ssl: false, // Disable SSL for local development
 };
 
 if (!poolConfig.user) {

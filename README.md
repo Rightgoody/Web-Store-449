@@ -22,6 +22,7 @@ A complete full-stack TypeScript-based e-commerce website with user authenticati
 - **Shopping cart management** with database persistence
 - **User management** with password hashing
 - **Database migrations** for easy setup
+- **Drizzle ORM** with Drizzle Studio GUI for database visualization
 - **CORS protection** and input validation
 
 ### DevOps & Deployment
@@ -49,6 +50,8 @@ Web-Store-449/
 │   ├── src/
 │   │   ├── config/
 │   │   │   └── database.ts      # PostgreSQL connection with Docker
+│   │   ├── db/
+│   │   │   └── schema.ts        # Drizzle ORM schema definitions
 │   │   ├── models/
 │   │   │   ├── User.ts         # User model with bcrypt auth
 │   │   │   ├── Product.ts      # Product model with CRUD
@@ -66,6 +69,7 @@ Web-Store-449/
 │   │   ├── scripts/
 │   │   │   └── migrate.ts       # Database setup and seeding
 │   │   └── app.ts               # Express server with CORS
+│   ├── drizzle.config.ts        # Drizzle Kit configuration
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── .env                     # Environment configuration
@@ -94,6 +98,7 @@ Web-Store-449/
 - **Node.js + Express** - Server framework
 - **TypeScript** - Type-safe backend development
 - **PostgreSQL** - Relational database
+- **Drizzle ORM** - Type-safe ORM with GUI visualization
 - **JWT** - Authentication tokens
 - **bcryptjs** - Password hashing
 
@@ -176,6 +181,18 @@ pnpm run build      # Build for production
 pnpm run preview    # Preview production build
 ```
 
+### Database Management
+```bash
+# Start Drizzle Studio (GUI for database visualization)
+cd backend && pnpm run drizzle:studio
+
+# Generate migrations from schema
+cd backend && pnpm run drizzle:generate
+
+# Push schema changes to database
+cd backend && pnpm run drizzle:push
+```
+
 ## Authentication System
 
 ### User Features
@@ -234,6 +251,42 @@ GET  /api/auth/profile   // Get user profile (requires auth)
 - **Data Seeding** - Sample products loaded automatically
 - **Foreign Key Relationships** - Proper database relationships
 - **Connection Pooling** - Efficient database connections
+- **Drizzle Studio** - Visual GUI for viewing database schema and relations
+
+### Database Management with Drizzle Studio
+
+Drizzle Studio provides a web-based GUI to visualize and manage your database schema, view relationships, and browse data.
+
+#### Starting Drizzle Studio
+
+```bash
+cd backend
+pnpm run drizzle:studio
+```
+
+This will start Drizzle Studio and open it in your browser (typically at `http://localhost:4983`). You can:
+- **View all tables** and their columns
+- **See relationships** between tables visually
+- **Browse and edit data** directly in the GUI
+- **Run queries** and explore your database
+- **Visualize foreign key relationships**
+
+#### Additional Drizzle Commands
+
+```bash
+cd backend
+
+# Generate migration files from schema
+pnpm run drizzle:generate
+
+# Push schema changes directly to database (development)
+pnpm run drizzle:push
+
+# Introspect existing database to generate schema
+pnpm run drizzle:introspect
+```
+
+**Note**: Your existing code using raw SQL queries will continue to work. Drizzle Studio is for visualization and management purposes.
 
 ## Security Features
 
