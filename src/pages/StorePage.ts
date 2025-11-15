@@ -1,3 +1,13 @@
+interface ApiProduct {
+    id: number;
+    name: string;
+    description: string;
+    price: string; 
+    image_url: string;
+    category: string;
+    stock: number;
+}
+
 export class StorePage {
     render(): string {
         return `
@@ -8,43 +18,20 @@ export class StorePage {
             </div>
 
             <div class="store-content">
-
-            <div class="filter-bar">
-                <button data-filter="all">All</button>
-                <button data-filter="shirt">Shirts</button>
-                <button data-filter="pants">Pants</button>
-                <button data-filter="sweatshirt">Sweatshirts</button>
-            </div>
-
+                <div class="filter-bar">
+                    <button data-filter="all">All</button>
+                    <button data-filter="shirt">Shirts</button>
+                    <button data-filter="pants">Pants</button>
+                    <button data-filter="sweatshirt">Sweatshirts</button>
+                </div>
 
                 <div class="container">
-                    <div class="product-grid flexbox-grid">
-                        <div class="product-item" data-tags="shirt,casual">
-                            <div class="image-container">
-                                <img src="https://ik.imagekit.io/c2o/prd/ik-seo/tr:n-original/4/c/8/8/4c883b480180432520fb059a6b99cd8c5dec30b8_Gildan_Heavy_Cotton_Adult_TShirt_213_638/Gildan_Heavy_Cotton_Adult_TShirt_213_638.jpg" alt="Gildan">
-                            </div>
-                            <h3>Gildan T-Shirt</h3>
-                            <p class="product-price">$9.99</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                        
-                        <div class="product-item" data-tags="pants,casual">
-                            <div class="image-container">
-                                <img src="https://www.gap.com/webcontent/0055/633/889/cn55633889.jpg" alt="Gap">
-                            </div>
-                            <h3>Gap Modern Khakis</h3>
-                            <p class="product-price">$29.99</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-
-                        <div class="product-item" data-tags="sweatshirt,casual">
-                            <div class="image-container">
-                                <img src="https://static.platform.michaels.com/2c-prd/89904634727264.jpg" alt="Hanes Sweatshirt">
-                            </div>
-                            <h3>Hanes EcoSmart Sweatshirt</h3>
-                            <p class="product-price">$19.99</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
+                    <!-- 
+                      This grid is now empty, but has an ID.
+                      initPage() will find this ID and inject product HTML here. 
+                    -->
+                    <div class="product-grid flexbox-grid" id="product-grid-container">
+                        <p class="loading-message">Loading products from the database...</p>
                     </div>
                 </div>
             </div>
@@ -57,5 +44,55 @@ export class StorePage {
                 </div>
             </div>
         `;
+    }
+
+    async initPage(): Promise<void> {
+        const gridContainer = document.getElementById('product-grid-container');
+        if (!gridContainer) {
+            console.error('StorePage Error: Could not find product grid container.');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3001/api/products');
+            
+            if (!response.ok) {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
+
+            const products: ApiProduct[] = await response.json();
+
+            if (products.length === 0) {
+                gridContainer.innerHTML = '<p>No products are currently available.</p>';
+                return;
+            }
+
+            const productsHtml = products.map(product => {
+                const tags = `${product.category.toLowerCase()}`; 
+                
+                return `
+                    <div class="product-item" data-tags="${tags}">
+                        <div class="image-container">
+                            <img src="${product.image_url}" alt="${product.name}">
+                        </div>
+                        <h3>${product.name}</h3>
+                        <p class="product-price">$${Number(product.price).toFixed(2)}</p>
+                        <!-- Add data-product-id so your cart script knows what was added -->
+                        <button class="add-to-cart" data-product-id="${product.id}">Add to Cart</button>
+                    </div>
+                `;
+            }).join('');
+
+            gridContainer.innerHTML = productsHtml;
+
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            gridContainer.innerHTML = `
+                <p class="error-message">
+                    <strong>Error: Could not load products.</strong><br>
+                    Please ensure the backend server is running and the database is migrated.
+                </p>
+            `;
+        }
     }
 }

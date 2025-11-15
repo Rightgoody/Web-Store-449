@@ -49,14 +49,12 @@ export class CartModel {
   static async addItem(cartData: AddToCartData): Promise<CartItem> {
     const { user_id, product_id, quantity } = cartData;
     
-    // Check if item already exists in cart
     const existingItem = await pool.query(
       'SELECT * FROM cart_items WHERE user_id = $1 AND product_id = $2',
       [user_id, product_id]
     );
 
     if (existingItem.rows.length > 0) {
-      // Update existing item quantity
       const query = `
         UPDATE cart_items 
         SET quantity = quantity + $1, updated_at = NOW()
