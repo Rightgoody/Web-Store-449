@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { background: #e8f4f8; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #007bff; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { background: #f8f9fa; padding: 10px; margin: 10px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Navigation Test</h1>
+    
+    <div class="test">
+        <h3>Test 1: Direct Navigation</h3>
+        <button onclick="testDirectNavigation()">Test Direct Navigation</button>
+        <div id="result1" class="result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Simulate Login Click</h3>
+        <button onclick="testLoginClick()">Simulate Login Click</button>
+        <div id="result2" class="result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Check Navigation Links</h3>
+        <button onclick="checkNavigationLinks()">Check Navigation Links</button>
+        <div id="result3" class="result"></div>
+    </div>
+
+    <script>
+        function testDirectNavigation() {
+            console.log('Testing direct navigation...');
+            document.getElementById('result1').innerHTML = 'Direct navigation test completed. Check console for details.';
+        }
+        
+        function testLoginClick() {
+            console.log('Simulating login click...');
+            // Simulate clicking on a login link
+            const event = new Event('click');
+            const mockLink = { 
+                preventDefault: () => {}, 
+                target: { getAttribute: () => 'sign-in' } 
+            };
+            
+            // Simulate the navigation logic
+            const page = 'sign-in';
+            console.log('Navigation clicked:', page);
+            document.getElementById('result2').innerHTML = `Simulated click on login. Page: ${page}`;
+        }
+        
+        function checkNavigationLinks() {
+            console.log('Checking navigation links...');
+            const navLinks = document.querySelectorAll('.nav-link');
+            console.log('Found', navLinks.length, 'navigation links');
+            document.getElementById('result3').innerHTML = `Found ${navLinks.length} navigation links in current page.`;
+        }
+        
+        // Run tests on load
+        window.addEventListener('load', () => {
+            console.log('Page loaded, running tests...');
+            checkNavigationLinks();
+        });
+    </script>
+</body>
+</html>

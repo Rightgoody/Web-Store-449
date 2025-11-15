@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Web Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Debug Navigation Test</h1>
+    
+    <div class="debug">
+        <h3>Test Navigation</h3>
+        <button onclick="testNavigation('home')">Home</button>
+        <button onclick="testNavigation('sign-in')">Login</button>
+        <button onclick="testNavigation('about')">About</button>
+        <button onclick="testNavigation('store')">Store</button>
+    </div>
+    
+    <div class="debug">
+        <h3>Current Page</h3>
+        <div id="currentPage">home</div>
+    </div>
+    
+    <div class="debug">
+        <h3>Navigation Links</h3>
+        <div id="navLinks"></div>
+    </div>
+
+    <script>
+        function testNavigation(page) {
+            console.log('Testing navigation to:', page);
+            document.getElementById('currentPage').textContent = page;
+            
+            // Simulate the navigation logic
+            const navLinks = document.querySelectorAll('.nav-link');
+            console.log('Found', navLinks.length, 'navigation links');
+            
+            // Update display
+            document.getElementById('navLinks').innerHTML = `
+                Found ${navLinks.length} navigation links<br>
+                Current page: ${page}
+            `;
+        }
+        
+        // Test on load
+        window.addEventListener('load', () => {
+            console.log('Page loaded, testing navigation...');
+            testNavigation('home');
+        });
+    </script>
+</body>
+</html>

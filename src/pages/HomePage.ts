@@ -4,8 +4,8 @@ export class HomePage {
             <div class="hero-section">
                 <div class="hero-content">
                     <h1>Welcome to Our Store</h1>
-                    <p>Discover amazing products at great prices. Your one-stop destination for quality shopping.</p>
-                    <button class="cta-button">Shop Now</button>
+                    <p>Discover amazing clothes at great prices. Your one-stop destination for quality shopping to fit all your needs.</p>
+                    <a href="#shop" class="cta-button nav-link" data-page="store">Shop Now</a>
                 </div>
             </div>
             
