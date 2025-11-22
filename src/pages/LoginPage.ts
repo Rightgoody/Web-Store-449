@@ -82,12 +82,32 @@ export class LoginPage {
         submitButton.disabled = true;
         
         try {
+            // First, test backend connectivity
+            try {
+                const healthCheck = await fetch('http://localhost:3001/api/health', {
+                    method: 'GET',
+                    signal: AbortSignal.timeout(5000) // 5 second timeout
+                });
+                if (!healthCheck.ok) {
+                    throw new Error(`Backend health check failed: ${healthCheck.status}`);
+                }
+                console.log('Backend is reachable');
+            } catch (healthError) {
+                const errorMsg = healthError instanceof Error 
+                    ? healthError.message 
+                    : 'Unknown error';
+                if (errorMsg.includes('timeout') || errorMsg.includes('Failed to fetch')) {
+                    throw new Error('Cannot connect to backend server. Please ensure the backend is running on http://localhost:3001. Run: pnpm run backend:dev');
+                }
+                throw healthError;
+            }
+            
             const endpoint = this.isLoginMode ? '/api/auth/login' : '/api/auth/register';
             const body = this.isLoginMode 
                 ? { email, password }
                 : { email, password, name };
 
-            console.log('Sending auth request to:', endpoint, body);
+            console.log('Sending auth request to:', `http://localhost:3001${endpoint}`, body);
 
             const response = await fetch(`http://localhost:3001${endpoint}`, {
                 method: 'POST',
@@ -97,10 +117,26 @@ export class LoginPage {
                 body: JSON.stringify(body)
             });
 
-            const data = await response.json();
-            console.log('Auth response:', data);
+            console.log('Auth response status:', response.status);
+            console.log('Auth response headers:', response.headers);
+
+            let data;
+            try {
+                const responseText = await response.text();
+                console.log('Auth response text:', responseText);
+                data = responseText ? JSON.parse(responseText) : {};
+            } catch (parseError) {
+                console.error('Failed to parse response:', parseError);
+                throw new Error(`Invalid response from server: ${response.status} ${response.statusText}`);
+            }
+
+            console.log('Auth response data:', data);
 
             if (response.ok) {
+                if (!data.token) {
+                    throw new Error('No token received from server');
+                }
+                
                 // Store token and user data in localStorage
                 localStorage.setItem('authToken', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
@@ -113,13 +149,31 @@ export class LoginPage {
                 // Redirect to home page after successful auth
                 setTimeout(() => {
                     window.location.hash = '#home';
+                    // Reload page to refresh navigation
+                    window.location.reload();
                 }, 1500);
             } else {
-                this.showMessage('error', data.error || 'Authentication failed');
+                const errorMsg = data.error || data.message || `Authentication failed (${response.status})`;
+                console.error('Auth failed:', errorMsg);
+                this.showMessage('error', errorMsg);
             }
         } catch (error) {
             console.error('Auth error:', error);
-            this.showMessage('error', 'Network error. Please check if the backend is running.');
+            let errorMessage = 'Network error. Please check if the backend is running.';
+            
+            if (error instanceof Error) {
+                if (error.message.includes('Cannot connect to backend')) {
+                    errorMessage = error.message;
+                } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                    errorMessage = 'Cannot connect to backend server. Please ensure:\n1. Backend is running (run: pnpm run backend:dev)\n2. Backend is accessible at http://localhost:3001\n3. No firewall is blocking the connection';
+                } else if (error.message.includes('timeout')) {
+                    errorMessage = 'Request timed out. The backend may be slow or unresponsive.';
+                } else {
+                    errorMessage = `Error: ${error.message}`;
+                }
+            }
+            
+            this.showMessage('error', errorMessage);
         } finally {
             // Reset button state
             submitButton.textContent = originalText;
