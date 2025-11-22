@@ -3,6 +3,7 @@ import cors from 'cors';
 import authRoutes from './routes/auth';
 import productRoutes from './routes/products';
 import cartRoutes from './routes/cart';
+import reviewRoutes from './routes/reviews';
 
 const app = express();
 const PORT = process.env.PORT || 3001; 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ 

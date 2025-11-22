@@ -53,15 +53,28 @@ export const orderItems = pgTable('order_items', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
+// Reviews table
+export const reviews = pgTable('reviews', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  productId: integer('product_id').notNull().references(() => products.id, { onDelete: 'cascade' }),
+  rating: integer('rating').notNull(), // 1-5 stars
+  comment: text('comment'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   cartItems: many(cartItems),
   orders: many(orders),
+  reviews: many(reviews),
 }));
 
 export const productsRelations = relations(products, ({ many }) => ({
   cartItems: many(cartItems),
   orderItems: many(orderItems),
+  reviews: many(reviews),
 }));
 
 export const cartItemsRelations = relations(cartItems, ({ one }) => ({
@@ -93,4 +106,17 @@ export const orderItemsRelations = relations(orderItems, ({ one }) => ({
     references: [products.id],
   }),
 }));
+
+export const reviewsRelations = relations(reviews, ({ one }) => ({
+  user: one(users, {
+    fields: [reviews.userId],
+    references: [users.id],
+  }),
+  product: one(products, {
+    fields: [reviews.productId],
+    references: [products.id],
+  }),
+}));
+
+
 

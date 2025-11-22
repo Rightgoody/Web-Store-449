@@ -5,6 +5,7 @@ import { AboutPage } from './pages/AboutPage';
 import { StorePage } from './pages/StorePage';
 import { LoginPage } from './pages/LoginPage';
 import { CartPage } from './pages/CartPage';
+import { ProductDetailPage } from './pages/ProductDetailPage';
 import './styles/main.css';
 
 interface PageComponent {
@@ -36,6 +37,12 @@ class App {
         };
 
         this.checkAuthStatus();
+
+        // Listen for hash changes to handle navigation
+        window.addEventListener('hashchange', () => {
+            const page = window.location.hash.replace('#', '') || 'home';
+            this.loadPage(page);
+        });
 
         const initialPage = window.location.hash.replace('#', '') || 'home';
         this.loadPage(initialPage);
@@ -247,6 +254,18 @@ class App {
     private async loadPage(page: string): Promise<void> {
         console.log('Loading page:', page);
         this.currentPage = page;
+        
+        // Handle product detail pages (e.g., #product/123)
+        if (page.startsWith('product/')) {
+            const productDetailPage = new ProductDetailPage();
+            this.appElement.innerHTML = productDetailPage.render();
+            await productDetailPage.initPage();
+            if (typeof productDetailPage.attachEventListeners === 'function') {
+                productDetailPage.attachEventListeners();
+            }
+            return;
+        }
+
         window.location.hash = page;
 
         document.querySelectorAll('.nav-link').forEach(link => {

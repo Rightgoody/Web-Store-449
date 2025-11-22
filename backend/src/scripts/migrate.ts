@@ -63,6 +63,19 @@ export async function createTables() {
       )
     `);
 
+    // Create reviews table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS reviews (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+        rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+        comment TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
     console.log('Database tables created successfully!');
   } catch (error) {
     console.error('Error creating tables:', error);
